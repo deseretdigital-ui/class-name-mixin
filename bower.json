@@ -1,0 +1,22 @@
+{
+  "name": "ClassNameMixin",
+  "homepage": "https://github.com/deseretdigital-ui/ClassNameMixin",
+  "authors": [
+    "Russell Ahlstrom <rahlstrom@deseretdigital.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "gulp",
+    "gulpfile.js",
+    "src"
+  ],
+  "main": "dist/ClassNameMixin.js",
+  "dependencies": {
+    "react": "~0.12.2"
+  }
+}
