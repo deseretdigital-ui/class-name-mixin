@@ -4,7 +4,7 @@
   "description": "Mixin to easily bring in ClassNames from props.",
   "main": "dist/ClassNameMixin.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,14 @@
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-gh-pages": "^0.4.0",
+    "gulp-mocha": "^2.0.0",
     "gulp-webpack": "^1.1.0",
+    "jsdom": "^2.0.0",
     "jsx-loader": "^0.12.2",
+    "mocha": "^2.1.0",
     "react": "^0.12.2",
     "require-dir": "^0.1.0",
+    "should": "^4.6.0",
     "webpack": "^1.4.13"
   }
 }
