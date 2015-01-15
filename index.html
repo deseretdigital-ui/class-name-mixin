@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>ClassNameMixin Example</title>
+  <meta name="description" content="ClassNameMixin Example" />
+
+  <script src="https://fb.me/react-with-addons-0.12.2.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.12.2.js"></script>
+
+  <script src="ClassNameMixin.js"></script>
+
+  <style>
+    .example-component {
+      background-color: dodgerblue;
+      font-family: Century Gothic;
+      font-style: italic;
+      padding: 5px;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .ridge-border {
+      border: 5px ridge #639;
+    }
+
+    .large-font-size {
+      font-size: 36px;
+    }
+
+    .white-background {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Example</h1>
+
+  <div id="classNameMixinExample0"></div>
+  <div id="classNameMixinExample1"></div>
+  <div id="classNameMixinExample2"></div>
+  <div id="classNameMixinExample3"></div>
+
+  <script type="text/jsx">
+    var ExampleComponent = React.createClass({
+      mixins: [ClassNameMixin],
+
+      render: function() {
+        return (
+          <div className={this.getCombinedClassNames('example-component')}>This is our example!</div>
+        );
+      }
+    });
+
+    React.render(
+      <ExampleComponent />,
+      document.getElementById('classNameMixinExample0')
+    );
+
+    React.render(
+      <ExampleComponent className="ridge-border" />,
+      document.getElementById('classNameMixinExample1')
+    );
+
+    React.render(
+      <ExampleComponent className={{'ridge-border': true, 'large-font-size': true, 'white-background': false}} />,
+      document.getElementById('classNameMixinExample2')
+    );
+
+    React.render(
+      <ExampleComponent className={{'ridge-border': true, 'example-component': false}} />,
+      document.getElementById('classNameMixinExample3')
+    );
+  </script>
+
+</body>
+</html>
