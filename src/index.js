@@ -1,2 +1,1 @@
-require('./scss/styles.scss');
-module.exports.HelloWorld = require('./components/HelloWorld');
+module.exports.ClassNameMixin = require('./mixins/ClassNameMixin');
