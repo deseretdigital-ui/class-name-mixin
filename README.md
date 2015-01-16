@@ -9,29 +9,59 @@ Mixin to easily bring in ClassNames from props.
     mixins: [ClassNameMixin],
 
     render: function() {
+      if (this.state.renderAsCollapsible) {
+        return this.renderAsCollapsible();
+      } else {
+        return this.renderAsDropdown();
+      }
+    },
+
+    renderAsDropdown: function() {
       return (
-        <div className={this.getCombinedClassNames('example-component')}>
-          This is our example!
+        <div className={this.getClassName('example-component--dropdown')}>
+          This is our collapsible example!
         </div>
       );
+    },
+
+    renderAsCollapsible: function() {
+      return (
+        <div className={this.getClassName('example-component--collapsible')}>
+          This is our dropdown example!
+        </div>
+      );
+    },
+
+    getComponentClassName: function() {
+      return 'example-component';
     }
   });
 
   React.render(
-    <ExampleComponent className="custom-block custom-block--modifier" />,
+    <ExampleComponent className="custom-class" />,
     document.getElementById('classNameMixinExample')
   );
 ```
 
 ### Output
 
+#### Collapsible
+
 ```html
-<div class="example-component custom-block custom-block--modifier">
-  This is our example!
+<div class="example-component example-component--collapsible custom-class">
+  This is our collapsible example!
 </div>
 ```
 
-## Properties
+#### Dropdown
+
+```html
+<div class="example-component example-component--dropdown custom-class">
+  This is our dropdown example!
+</div>
+```
+
+## Mixin Properties
 
 The mixin adds the following properties:
 
@@ -42,7 +72,7 @@ The mixin adds the following properties:
 __Type:__ string or classSet object
 __Default:__ `{}`
 
-Additional class names to add to be merged in to the arguments passed to getCombinedClassNames
+Additional class names to add to be merged in to the arguments passed to getClassName
 
 #### String
 
@@ -66,47 +96,32 @@ React.render(
 );
 ```
 
-## Methods
+## Mixin Methods
 
 The mixin adds the following methods:
 
-  * getCombinedClassNames
-  * convertStringToClassSetObject
+  * getClassName
 
-### getCombinedClassNames
+### getClassName
 
 __Arguments:__
 
-  * classNames - string | object
+  * className - string | object OPTIONAL
 
 __Return:__ string
 
 Accepts a string of a classSet object as an argument. Returns a string of the computed classes.
 
-This method combines the passed in classNames to the method with the classNames set in the props and then returns a string of space delimited class names to be used in a classNames attribute.
+This method merges the class names from getComponentClassName, the className argument, and the className property. In the case of duplicate class names, the className argument beats getComponentClassName and the className property beats both. A string of space delimited class names is returned to be used in a React className attribute.
 
-#### Example
+## Optional Component Methods
 
-```js
-  render: function() {
-    return (
-      <div className={this.getCombinedClassNames('example-component')}>
-        This is our example!
-      </div>
-    );
-  }
-```
+The mixin looks for the following component methods and uses them if defined:
 
-### object convertStringToClassSetObject(string classNames)
+  * getComponentClassName
 
-__Arguments:__
+### getComponentClassName
 
-  * classNames - string
+__Return:__ string | object
 
-__Return:__ object
-
-Accepts a string as an argument. Returns a classSet object.
-
-Helper method to convert a space delimited string into a classSet object.
-
-Used by getCombinedClassNames and should not need to be called manually in your own code.
+This method should be used to return either a string or classSet object of default classes for the component. This method is called automatically by getClassName and has the argument from getClassName and this.props.className merged into it.

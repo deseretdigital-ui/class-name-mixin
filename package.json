@@ -1,6 +1,6 @@
 {
   "name": "ClassNameMixin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Mixin to easily bring in ClassNames from props.",
   "main": "dist/ClassNameMixin.js",
   "scripts": {

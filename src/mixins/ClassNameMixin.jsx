@@ -1,4 +1,6 @@
 var React = require('react/addons');
+var convertStringToClassSetObject = require('../utils/convertStringToClassSetObject');
+var mergeClassSetObjects = require('../utils/mergeClassSetObjects');
 
 var ClassNameMixin = {
   propTypes: {
@@ -14,37 +16,33 @@ var ClassNameMixin = {
     };
   },
 
-  getCombinedClassNames: function(classNames) {
-    if (classNames === undefined) {
-      classNames = {};
+  getClassName: function(className) {
+    if (className === undefined) {
+      className = {};
     }
 
-    if (typeof classNames === 'string') {
-      classNames = this.convertStringToClassSetObject(classNames)
+    if (typeof className === 'string') {
+      className = convertStringToClassSetObject(className)
     }
 
-    var propClassNames = this.props.className;
-    if (typeof propClassNames === 'string') {
-      propClassNames = this.convertStringToClassSetObject(propClassNames)
+    var propClassName = this.props.className;
+    if (typeof propClassName === 'string') {
+      propClassName = convertStringToClassSetObject(propClassName)
     }
 
-    for (className in propClassNames ) {
-      if (propClassNames.hasOwnProperty(className)) {
-        classNames[className] = propClassNames[className];
+    var componentClassName = {};
+    if (typeof this.getComponentClassName === 'function') {
+      componentClassName = this.getComponentClassName();
+
+      if (typeof componentClassName === 'string') {
+        componentClassName = convertStringToClassSetObject(componentClassName)
       }
     }
 
-    return React.addons.classSet(classNames);
-  },
+    var mergedClassName = mergeClassSetObjects(componentClassName, className);
+    mergedClassName = mergeClassSetObjects(mergedClassName, propClassName);
 
-  convertStringToClassSetObject: function(classNames) {
-    var classSetObject = {};
-
-    classNames.split(' ').forEach(function(className) {
-      classSetObject[className] = true;
-    });
-
-    return classSetObject;
+    return React.addons.classSet(mergedClassName);
   }
 };
 
