@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var convertStringToClassSetObject = require('../utils/convertStringToClassSetObject');
 var mergeClassSetObjects = require('../utils/mergeClassSetObjects');
+var classNames = require('classnames');
 
 var ClassNameMixin = {
   propTypes: {
@@ -42,7 +43,7 @@ var ClassNameMixin = {
     var mergedClassName = mergeClassSetObjects(componentClassName, className);
     mergedClassName = mergeClassSetObjects(mergedClassName, propClassName);
 
-    return React.addons.classSet(mergedClassName);
+    return classNames(mergedClassName);
   }
 };
 
