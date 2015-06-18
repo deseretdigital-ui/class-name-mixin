@@ -1,6 +1,6 @@
 {
   "name": "class-name-mixin",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Mixin to easily bring in ClassNames from props.",
   "main": "dist/ClassNameMixin.js",
   "scripts": {
@@ -11,6 +11,9 @@
     "url": "https://github.com/deseretdigital-ui/class-name-mixin.git"
   },
   "author": "Russell Ahlstrom <rahlstrom@deseretdigital.com>",
+  "contributors": [
+     "Daniel Heidecke <heidecke@gmail.com> (http://moshoon.com/)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/deseretdigital-ui/class-name-mixin/issues"
