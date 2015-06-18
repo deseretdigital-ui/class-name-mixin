@@ -1,1 +1,212 @@
-!function(e,t){if("object"==typeof exports&&"object"==typeof module)module.exports=t(require("react/addons"));else if("function"==typeof define&&define.amd)define(["react/addons"],t);else{var o=t("object"==typeof exports?require("react/addons"):e.React);for(var r in o)("object"==typeof exports?exports:e)[r]=o[r]}}(this,function(e){return function(e){function t(r){if(o[r])return o[r].exports;var s=o[r]={exports:{},id:r,loaded:!1};return e[r].call(s.exports,s,s.exports,t),s.loaded=!0,s.exports}var o={};return t.m=e,t.c=o,t.p="",t(0)}([function(e,t,o){e.exports=o(1)},function(e,t,o){var r=o(2),s=o(3),n=o(4),a={propTypes:{className:r.PropTypes.oneOfType([r.PropTypes.string,r.PropTypes.object])},getDefaultProps:function(){return{className:{}}},getClassName:function(e){void 0===e&&(e={}),"string"==typeof e&&(e=s(e));var t=this.props.className;"string"==typeof t&&(t=s(t));var o={};"function"==typeof this.getComponentClassName&&(o=this.getComponentClassName(),"string"==typeof o&&(o=s(o)));var a=n(o,e);return a=n(a,t),r.addons.classSet(a)}};e.exports=a},function(t,o){t.exports=e},function(e,t){e.exports=function(e){var t={};return e.split(" ").forEach(function(e){t[e]=!0}),t}},function(e,t){e.exports=function(e,t){var o=JSON.parse(JSON.stringify(e));for(className in t)t.hasOwnProperty(className)&&(o[className]=t[className]);return o}}])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("react/addons"));
+	else if(typeof define === 'function' && define.amd)
+		define(["react/addons"], factory);
+	else {
+		var a = typeof exports === 'object' ? factory(require("react/addons")) : factory(root["React"]);
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(2);
+	var convertStringToClassSetObject = __webpack_require__(3);
+	var mergeClassSetObjects = __webpack_require__(4);
+	var classNames = __webpack_require__(5);
+
+	var ClassNameMixin = {
+	  propTypes: {
+	    'className': React.PropTypes.oneOfType([
+	      React.PropTypes.string,
+	      React.PropTypes.object
+	    ])
+	  },
+
+	  getDefaultProps: function() {
+	    return {
+	      'className': {}
+	    };
+	  },
+
+	  getClassName: function(className) {
+	    if (className === undefined) {
+	      className = {};
+	    }
+
+	    if (typeof className === 'string') {
+	      className = convertStringToClassSetObject(className)
+	    }
+
+	    var propClassName = this.props.className;
+	    if (typeof propClassName === 'string') {
+	      propClassName = convertStringToClassSetObject(propClassName)
+	    }
+
+	    var componentClassName = {};
+	    if (typeof this.getComponentClassName === 'function') {
+	      componentClassName = this.getComponentClassName();
+
+	      if (typeof componentClassName === 'string') {
+	        componentClassName = convertStringToClassSetObject(componentClassName)
+	      }
+	    }
+
+	    var mergedClassName = mergeClassSetObjects(componentClassName, className);
+	    mergedClassName = mergeClassSetObjects(mergedClassName, propClassName);
+
+	    return classNames(mergedClassName);
+	  }
+	};
+
+	module.exports = ClassNameMixin;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = function(classNames) {
+	  var classSetObject = {};
+
+	  classNames.split(' ').forEach(function(className) {
+	    classSetObject[className] = true;
+	  });
+
+	  return classSetObject;
+	};
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	module.exports = function(baseObject, objectToMerge) {
+	  var clonedObject = JSON.parse(JSON.stringify(baseObject));
+
+	  for (className in objectToMerge ) {
+	    if (objectToMerge.hasOwnProperty(className)) {
+	      clonedObject[className] = objectToMerge[className];
+	    }
+	  }
+
+	  return clonedObject;
+	};
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2015 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+
+	(function () {
+		'use strict';
+
+		function classNames () {
+
+			var classes = '';
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if ('string' === argType || 'number' === argType) {
+					classes += ' ' + arg;
+
+				} else if (Array.isArray(arg)) {
+					classes += ' ' + classNames.apply(null, arg);
+
+				} else if ('object' === argType) {
+					for (var key in arg) {
+						if (arg.hasOwnProperty(key) && arg[key]) {
+							classes += ' ' + key;
+						}
+					}
+				}
+			}
+
+			return classes.substr(1);
+		}
+
+		if (true) {
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else {
+			window.classNames = classNames;
+		}
+
+	}());
+
+
+/***/ }
+/******/ ])
+});
+;
