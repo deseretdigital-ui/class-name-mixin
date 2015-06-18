@@ -29,6 +29,6 @@ module.exports = {
     modulesDirectories: ['node_modules']
   },
   plugins: [
-    //new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin()
   ]
 }
