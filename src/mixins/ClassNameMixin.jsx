@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var convertStringToClassSetObject = require('../utils/convertStringToClassSetObject');
 var mergeClassSetObjects = require('../utils/mergeClassSetObjects');
 var classNames = require('classnames');
