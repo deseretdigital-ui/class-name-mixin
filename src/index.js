@@ -1,1 +1,1 @@
-module.exports.ClassNameMixin = require('./mixins/ClassNameMixin');
+module.exports = require('./mixins/ClassNameMixin');
